@@ -1,0 +1,9 @@
+During startup - Warning message:
+Setting LC_CTYPE failed, using "C" 
+Loading required package: optparse
+Loading required package: metaCCA
+Warning messages:
+1: In if (evals == 1) { :
+  the condition has length > 1 and only the first element will be used
+2: In if (evals == 1) { :
+  the condition has length > 1 and only the first element will be used

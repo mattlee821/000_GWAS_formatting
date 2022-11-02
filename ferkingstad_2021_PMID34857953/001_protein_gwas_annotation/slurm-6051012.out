@@ -1,0 +1,32 @@
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10000_28_CRYBB2_CRBB2.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10001_7_RAF1_c_Raf.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10003_15_ZNF41_ZNF41.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10006_25_ELK1_ELK1.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10008_43_GUCA1A_GUC1A.txt.gz.annotated’: No such file or directory
+
+gzip: /data/protein_GWAS_ferkingstad_EU_2021/files/10011_65_OCRL_OCRL.txt.gz: unexpected end of file
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10011_65_OCRL_OCRL.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10012_5_SPDEF_SPDEF.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10014_31_SNAI2_SLUG.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10015_119_KCNAB2_KCAB2.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10022_207_POLH_POLH.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10023_32_VDR_VDR.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10024_44_HOGA1_HOGA1.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10030_8_MUTYH_MutY_homolog.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10035_6_DUSP4_DUS4.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10036_201_ZHX3_ZHX3.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10037_98_SIGLEC12_SIG12.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10040_63_TP63_P73L.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10041_3_HNF4A_HNF4A.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10042_8_SGK3_SGK3.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10043_31_BRD4_BRD4.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10044_12_WNT10A_WN10A.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10045_47_CUL3_CUL3.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10046_55_BIRC2_cIAP_1.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10047_12_NCF2_NCF_2.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10048_7_CBFB_PEBB.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10049_112_TERF1_TERF1.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10053_5_ILK_ILK1.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10054_3_GAN_GAN.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10056_5_FOXM1_FOXM1.txt.gz.annotated’: No such file or directory
+rm: cannot remove ‘/data/protein_GWAS_ferkingstad_EU_2021/files/10058_1_RAD23A_RD23A.txt.gz.annotated’: No such file or director
