@@ -1,5 +1,5 @@
 # add phenotype col to crc gwas
-cd ~/001_projects/000_datasets/colorectal_cancer/GECCO_125K_GWAS_results
+cd ~/001_projects/000_datasets/huyghe_2018_PMID30510241/processed/
 # make phenotype column
 tmp=$(mktemp) || { ret="$?"; printf 'Failed to create temp file\n'; exit "$ret"; }
 for file in *annotated.txt; do
