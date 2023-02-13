@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=annotate-filelist9
+#SBATCH --job-name=annotate-filelist19
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=20-1:0:00
@@ -9,7 +9,7 @@
 cd /data/protein_GWAS_ferkingstad_EU_2021/files/processed/
 
 tmp=$(mktemp) || { ret="$?"; printf 'Failed to create temp file\n'; exit "$ret"; }
-for file in `cat filelist9`; do
+for file in `cat filelist19`; do
     gzip -d -c ${file} > ${file}.unzipped
     rm ${file}
     awk 'BEGIN{OFS="\t"} {print $0, (FNR>1 ? FILENAME : "phenotype")}' ${file}.unzipped > ${tmp} &&

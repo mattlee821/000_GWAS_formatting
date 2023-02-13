@@ -6,7 +6,7 @@
 #SBATCH --time=20-1:0:00
 #SBATCH --mem=100000M
 
-cd /data/protein_GWAS_ferkingstad_EU_2021/files/
+cd /data/protein_GWAS_ferkingstad_EU_2021/files/processed/
 
 tmp=$(mktemp) || { ret="$?"; printf 'Failed to create temp file\n'; exit "$ret"; }
 for file in `cat filelist3`; do
