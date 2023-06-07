@@ -6,10 +6,9 @@
 4. copy to `processed/` and perform all modifications here
 5. identify the delimiter of your file - `scripts/identify_delimiter.sh`
 6. make phenotype column - `scripts/phenotype_col.sh`
-7. format the header for consistency - `scripts/header.sh`
+7. format the header for consistency using `header_list.txt` - `scripts/header.sh`
 8. convert file to tab delimiter for consistency - `scripts/convert_delimiter.sh`
 9. compress file for storage using `gzip`
-
 
 ## data
 * `agrawal_2022_PMID35773277/` = [Agrawal et al., (2022)](https://www.nature.com/articles/s41467-022-30931-2) - abdominal/subcutaneous/visceral adiposity measures
