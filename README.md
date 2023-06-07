@@ -3,11 +3,12 @@
 ## how to: general appraoch
 1. set-up directory as `name_year_PMID`, with sub-directories `raw/` and `processed/`
 2. download data from source to `raw/` - ideally download using a script (e.g., `wget`)
-3. identify the delimiter of your file - `scripts/identify_delimiter.sh`
-4. make phenotype column - `scripts/phenotype_col.sh`
-5. format the header for consistency - `scripts/header.sh`
-6. convert file to tab delimiter for consistency - `scripts/convert_delimiter.sh`
-7. compress file for storage using `gzip`
+4. copy to `processed/` and perform all modifications here
+5. identify the delimiter of your file - `scripts/identify_delimiter.sh`
+6. make phenotype column - `scripts/phenotype_col.sh`
+7. format the header for consistency - `scripts/header.sh`
+8. convert file to tab delimiter for consistency - `scripts/convert_delimiter.sh`
+9. compress file for storage using `gzip`
 
 
 ## data
