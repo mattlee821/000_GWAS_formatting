@@ -1,0 +1,11 @@
+POS	POS
+CHR	CHR
+SNP	SNP
+Allele1	EA
+Allele2	OA
+Freq1	EAF
+Effect	BETA
+StdErr	SE
+P-value	P
+INFO	INFO
+
