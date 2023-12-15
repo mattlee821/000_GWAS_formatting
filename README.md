@@ -59,12 +59,12 @@
     * `download_GWAS-catalog.sh` - `wget` script to help download GWAS + README from EBI GWAS catalog
 
 ## data
-    * `agrawal_2022_PMID35773277/` = [Agrawal et al., (2022)](https://www.nature.com/articles/s41467-022-30931-2) - abdominal/subcutaneous/visceral adiposity measures
-    * `CRC_early-onset/` = unpublished - colorectal cancer (early onset)
-    * `fernandez-rozadilla_2022_PMID36539618` = [Fernandez-rozadilla et al., (2022)](https://pubmed.ncbi.nlm.nih.gov/36539618/) - colorectal cancer
-    * `ferkingstad_2021_PMID34857953/` = [Ferkingstad et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34857953/) - proteins (somascan)
-    * `GTEx/` = [Genotype Tissue Expression project](https://gtexportal.org/home/) - tissue expression
-    * `huyghe_2018_PMID30510241/` = [Huyghe et al., (2018)](https://pubmed.ncbi.nlm.nih.gov/30510241/) - colorectal cancer + subtypes
-    * `liu_2021_PMID34128465/` = [Liu et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34128465/) - visceral/subcutaneous/liver/pancreas volume/fat/measurement 
-    * `pulit_2019_PMID30239722/` = [Pulit et al., (2019)](https://pubmed.ncbi.nlm.nih.gov/30239722/) - BMI, WHR, WHRadjBMI
-    * `UKB_PPP/` = [UK Biobank Pharma Proteomics Project](https://www.biorxiv.org/content/10.1101/2022.06.17.496443v1) - proteins (olink)
+* `agrawal_2022_PMID35773277/` = [Agrawal et al., (2022)](https://www.nature.com/articles/s41467-022-30931-2) - abdominal/subcutaneous/visceral adiposity measures
+* `CRC_early-onset/` = unpublished - colorectal cancer (early onset)
+* `fernandez-rozadilla_2022_PMID36539618` = [Fernandez-rozadilla et al., (2022)](https://pubmed.ncbi.nlm.nih.gov/36539618/) - colorectal cancer
+* `ferkingstad_2021_PMID34857953/` = [Ferkingstad et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34857953/) - proteins (somascan)
+* `GTEx/` = [Genotype Tissue Expression project](https://gtexportal.org/home/) - tissue expression
+* `huyghe_2018_PMID30510241/` = [Huyghe et al., (2018)](https://pubmed.ncbi.nlm.nih.gov/30510241/) - colorectal cancer + subtypes
+* `liu_2021_PMID34128465/` = [Liu et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34128465/) - visceral/subcutaneous/liver/pancreas volume/fat/measurement 
+* `pulit_2019_PMID30239722/` = [Pulit et al., (2019)](https://pubmed.ncbi.nlm.nih.gov/30239722/) - BMI, WHR, WHRadjBMI
+* `UKB_PPP/` = [UK Biobank Pharma Proteomics Project](https://www.biorxiv.org/content/10.1101/2022.06.17.496443v1) - proteins (olink)
