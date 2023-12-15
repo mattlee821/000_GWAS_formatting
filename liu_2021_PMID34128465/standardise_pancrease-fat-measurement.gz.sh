@@ -10,7 +10,7 @@ SCRIPT=/home/leem/001_projects/000_GWAS_formatting/scripts/standardise/
 DATA_IN=/data/GWAS_data/files/liu_2021_PMID34128465/raw/
 DATA_OUT=/data/GWAS_data/files/liu_2021_PMID34128465/processed/
 COLUMNS=/home/leem/001_projects/000_GWAS_formatting/liu_2021_PMID34128465/
-FILE=pancrease-fat-measurement.gz
+FILE=pancreas-fat-measurement.gz
 
 cd ${SCRIPT}
 ./standardise.sh -i ${DATA_IN}${FILE} \
