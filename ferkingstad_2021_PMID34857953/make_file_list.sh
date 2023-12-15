@@ -27,3 +27,6 @@ awk 'NR > 4750 { exit } NR >= 4501 && NR <= 4750' filelist > filelist19
 awk 'NR > 5000 { exit } NR >= 4751 && NR <= 5000' filelist > filelist20
 
 wc -l filelist*
+
+
+awk 'NR > 5000 { exit } NR >= 4903 && NR <= 5000' filelist > filelist-test
