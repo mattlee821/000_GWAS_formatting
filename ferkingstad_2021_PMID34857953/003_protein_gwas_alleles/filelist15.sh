@@ -5,6 +5,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=20-1:0:00
 #SBATCH --mem=100000M
+#SBATCH --partition=low_p
 
 cd /data/protein_GWAS_ferkingstad_EU_2021/files/processed/
 

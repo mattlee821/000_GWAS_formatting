@@ -11,5 +11,5 @@ cd /data/protein_GWAS_ferkingstad_EU_2021/files/raw
 wget -i /data/protein_GWAS_ferkingstad_EU_2021/work/urls.txt
 
 for file in * ; do
-    mv -v "$file" "${file#*file=}"
+    mv -v "$file" "${file//download?token=70b20db4-e072-4330-84f1-499fda03b6ae&file#*file=}"
 done
