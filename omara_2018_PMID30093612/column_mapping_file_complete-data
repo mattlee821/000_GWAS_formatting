@@ -1,0 +1,11 @@
+base_pair_location	POS
+chromosome	CHR
+variant_id	SNP
+effect_allele	EA
+other_allele	OA
+effect_allele_frequency	EAF
+beta	BETA
+standard_error	SE
+p_value	P
+INFO	INFO
+
