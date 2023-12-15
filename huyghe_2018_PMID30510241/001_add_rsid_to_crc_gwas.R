@@ -12,42 +12,44 @@ names(vcf)[1:5] <- c("chr_name", "chrom_start", "SNP", "REF", "ALT")
 ## add chr_pos for merge 
 vcf$chr_pos <- paste0(as.character(vcf$chr_name),":", as.character(vcf$chrom_start))
 
-# marginal meta ====
-file_list <- list.files("/data/GWAS_data/files/huyghe_2018_PMID30510241/processed/", patter = "Marginal", full.names = T)
-for (i in 1:length(file_list)){
-  data <- fread(file_list[i], header = T)
-  data$chr_pos <- paste0(as.character(data$CHR),":", as.character(data$POS))
-  colnames(data)[1] <- "SNP_id"
-  
-  data <- left_join(data, vcf, by = "chr_pos", relationship = "many-to-many")
-  
-  output_file <- sub("\\.gz$", "", file_list[i])
-  write.table(data, output_file, sep = "\t",
-              quote = FALSE, row.names = FALSE, col.names = TRUE) 
-}
-
-# stratified ====
-file_list <- list.files("/data/GWAS_data/files/huyghe_2018_PMID30510241/processed/", patter = "Stratified", full.names = T)
-for (i in 1:length(file_list)){
-  data <- fread(file_list[i], header = T)
-  data$chr_pos <- paste0(as.character(data$CHR),":", as.character(data$POS))
-  colnames(data)[1] <- "SNP_id"
-  
-  data <- left_join(data, vcf, by = "chr_pos", relationship = "many-to-many")
-  
-  output_file <- sub("\\.gz$", "", file_list[i])
-  write.table(data, output_file, sep = "\t",
-              quote = FALSE, row.names = FALSE, col.names = TRUE) 
-}
+# # marginal meta ====
+# file_list <- list.files("/data/GWAS_data/files/huyghe_2018_PMID30510241/processed/", patter = "Marginal", full.names = T)
+# for (i in 1:length(file_list)){
+#   data <- fread(file_list[i], header = T)
+#   data$chr_pos <- paste0(as.character(data$CHR),":", as.character(data$POS))
+#   colnames(data)[1] <- "SNP_id"
+#   
+#   data <- left_join(data, vcf, by = "chr_pos", relationship = "many-to-many")
+#   
+#   output_file <- sub("\\.gz$", "", file_list[i])
+#   write.table(data, output_file, sep = "\t",
+#               quote = FALSE, row.names = FALSE, col.names = TRUE) 
+# }
+# 
+# # stratified ====
+# file_list <- list.files("/data/GWAS_data/files/huyghe_2018_PMID30510241/processed/", patter = "Stratified", full.names = T)
+# for (i in 1:length(file_list)){
+#   data <- fread(file_list[i], header = T)
+#   data$chr_pos <- paste0(as.character(data$CHR),":", as.character(data$POS))
+#   colnames(data)[1] <- "SNP_id"
+#   
+#   data <- left_join(data, vcf, by = "chr_pos", relationship = "many-to-many")
+#   
+#   output_file <- sub("\\.gz$", "", file_list[i])
+#   write.table(data, output_file, sep = "\t",
+#               quote = FALSE, row.names = FALSE, col.names = TRUE) 
+# }
 
 # joint ====
 file_list <- list.files("/data/GWAS_data/files/huyghe_2018_PMID30510241/processed/", patter = "joint", full.names = T)
 for (i in 1:length(file_list)){
   data <- fread(file_list[i], header = T)
-  data$chr_pos <- gsub("\\_.*","",data$MarkerName)
+  data$chr_pos <- gsub("\\_.*","",data$variant_id)
   colnames(data)[1] <- "SNP_id"
   
   data <- left_join(data, vcf, by = "chr_pos", relationship = "many-to-many")
+  colnames(data)[colnames(data) == "chr_name"] <- "CHR"
+  colnames(data)[colnames(data) == "chrom_start"] <- "POS"
   
   output_file <- sub("\\.gz$", "", file_list[i])
   write.table(data, output_file, sep = "\t",

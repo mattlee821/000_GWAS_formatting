@@ -6,6 +6,6 @@ Allele2	OA
 Freq1	EAF
 Effect	BETA
 StdErr	SE
-P.value	P
+P-value	P
 INFO	INFO
-#MarkerName	variant_id
+MarkerName	variant_id
