@@ -48,6 +48,7 @@ data <- left_join(data_files, data, by = c("ID" = "phenotype"))
 data <- data[complete.cases(data), ]
 data$file <- paste0("/data/GWAS_data/work/UKB_PPP/cis-snps/european/", sub(".*/", "", data$V1), ".", data$SNP)
 data <- select(data, V1, CHR, POS, file)
+data$CHR <- as.numeric(sub("X", 23, data$CHR)) # convert "X" CHR to 23
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/003_cissnps-discovery-EU_filelist.txt",
             row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
 
@@ -88,6 +89,7 @@ data <- data[complete.cases(data), ]
 data$file <- paste0("/data/GWAS_data/work/UKB_PPP/cis-snps/combined/", sub(".*/", "", data$V1), ".", data$SNP)
 data$V1 <- gsub(pattern = "european", replacement = "combined", x = data$V1)
 data <- select(data, V1, CHR, POS, file)
+data$CHR <- as.numeric(sub("X", 23, data$CHR)) # convert "X" CHR to 23
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/003_cissnps-combined-allancestries_filelist.txt",
             row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
 
@@ -130,5 +132,6 @@ data <- data[complete.cases(data), ]
 data$file <- paste0("/data/GWAS_data/work/UKB_PPP/cis-snps/non-european/", sub(".*/", "", data$V1), ".", data$SNP)
 data$V1 <- gsub(pattern = "european", replacement = "non-european", x = data$V1)
 data <- select(data, V1, CHR, POS, file)
+data$CHR <- as.numeric(sub("X", 23, data$CHR)) # convert "X" CHR to 23
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/003_cissnps-replicationn-nonEU_filelist.txt",
             row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
