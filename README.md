@@ -32,17 +32,12 @@
 - convert GWAS VCF to EBI (i.e., GWAS catalog) file type using `samtools`: [`convert_gwasvcf-ebi.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/convert_gwasvcf-ebi.sh)
 - move data from `processed/` to `work/` and change permissions: [`move-processed.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/move-processed.sh)
 
-## data
+## examples
 - `ferkingstad_2021_PMID34857953/` = [Ferkingstad et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34857953/) - deCODE proteins (Somalogic)
 - `sun_2023_PMID37794186` = [Sun et al., 2023](https://pubmed.ncbi.nlm.nih.gov/37794186/) - UK biobank proteins (Olink)
-- `pietzner_2021_PMID34648354` = 
-- `zhang_2020_PMID32424353` = 
+- `pietzner_2021_PMID34648354` = [Pietzner et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34648354/) - Fenland proteins (Somalogic)
+- `zhang_2022_PMID32424353` = [Zhang et al., (2022)](https://pubmed.ncbi.nlm.nih.gov/35501419/) - ARIC proteins (Somalogic)
 
-* `agrawal_2022_PMID35773277/` = [Agrawal et al., (2022)](https://www.nature.com/articles/s41467-022-30931-2) - abdominal/subcutaneous/visceral adiposity measures
-* `CRC_early-onset/` = unpublished - colorectal cancer (early onset)
-* `fernandez-rozadilla_2022_PMID36539618` = [Fernandez-rozadilla et al., (2022)](https://pubmed.ncbi.nlm.nih.gov/36539618/) - colorectal cancer
-* `GTEx/` = [Genotype Tissue Expression project](https://gtexportal.org/home/) - tissue expression
-* `huyghe_2018_PMID30510241/` = [Huyghe et al., (2018)](https://pubmed.ncbi.nlm.nih.gov/30510241/) - colorectal cancer + subtypes
-* `liu_2021_PMID34128465/` = [Liu et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34128465/) - visceral/subcutaneous/liver/pancreas volume/fat/measurement 
-* `pulit_2019_PMID30239722/` = [Pulit et al., (2019)](https://pubmed.ncbi.nlm.nih.gov/30239722/) - BMI, WHR, WHRadjBMI
-* `UKB_PPP/` = [UK Biobank Pharma Proteomics Project](https://www.biorxiv.org/content/10.1101/2022.06.17.496443v1) - proteins (olink)
+## references
+- [`1000genomes-phase3.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/references/1000genomes-phase3.sh) downloads and makes 1000 Genomes reference files using the same approach as [doug speed](https://dougspeed.com/reference-panel/)
+
