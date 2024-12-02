@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#SBATCH --job-name=001_download
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=20-1:0:00
+#SBATCH --mem=100000M
+#SBATCH --partition=low_p
+
+source activate test_env
+cd /data/GWAS_data/files/pietzner_2021_PMID34648354
+
+synapse get -r syn51761394 
+matt821 
+eyJ0eXAiOiJKV1QiLCJraWQiOiJXN05OOldMSlQ6SjVSSzpMN1RMOlQ3TDc6M1ZYNjpKRU9VOjY0NFI6VTNJWDo1S1oyOjdaQ0s6RlBUSCIsImFsZyI6IlJTMjU2In0.eyJhY2Nlc3MiOnsic2NvcGUiOlsidmlldyIsImRvd25sb2FkIiwibW9kaWZ5Il0sIm9pZGNfY2xhaW1zIjp7fX0sInRva2VuX3R5cGUiOiJQRVJTT05BTF9BQ0NFU1NfVE9LRU4iLCJpc3MiOiJodHRwczovL3JlcG8tcHJvZC5wcm9kLnNhZ2ViYXNlLm9yZy9hdXRoL3YxIiwiYXVkIjoiMCIsIm5iZiI6MTczMDcxNzE5MCwiaWF0IjoxNzMwNzE3MTkwLCJqdGkiOiIxMzQwNCIsInN1YiI6IjM0NzI2OTAifQ.fuhYNRBwQbL0dtBDkekxXukrhOvaHwR_bgNB0iWT0_sc3sH3LUIpwt57HJM7YvQX_UQA_1kgJf02VxPD3_UwNz2cXnR57gybo9_bCDhhdXcMaSJj-il8ML1C36WJ9y_QCLURcugauP5OmRba_mnfLbiBJ1ygPGV0rPbgFaMnZoNWw5VkfG5cjHBTQv6UnrsbJcQDu09uSYbQ2x-jwOGQQP2ZRqKkyimmQN8nejE-65SkaYzzZphcBH29knWSNOD0l10fcKssaRJS1QgFSlxbfHfQdVrsM_SF7FsbJ9z8A3VUem_9BNqpH5rnYv0S68hhUiQfn2SfWY30w8xzxov2_g
+
+mv Metadata/* docs
+rm -rf Metadata
+
+mv pGWAS\ Fenland\ SomaLogic\ Summary\ Statistics/* raw/
+rm -rf pGWAS\ Fenland\ SomaLogic\ Summary\ Statistics/
