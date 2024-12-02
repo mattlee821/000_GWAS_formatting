@@ -1,68 +1,46 @@
 # 000_GWAS_formatting
 
 ## how to
-1. set-up `/data` directory as `name_year_PMID/`, with sub-directories `raw/`, `processed/`, `docs/` and `/code` directory as `name_year_PMID/` with data specific sub directories
-    * `raw/` - contains the data you download
-    * `processed/` - contains the formatted data
-    * `docs/` - contains the data README etc.
-    * `001_download/` - contains code for downloading data
-    * `002_standardise/` - contains code for standardising data
-    * `003_instruments/` - contains code for identifying instruments for MR
-    ```
-    DATA=name_year_PMID
+1. use [`make-directory.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/make-directory.sh)
+  - `raw/` is where downloaded data lives
+  - `processed/` is where processed data lives (the data you use for stuff)
+2. download data to `raw/` =  examples for [GWAS catalog](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/download_GWAScatalog.sh) and [FinnGen](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/download_finngen.sh)
+3. use `rsync -av raw/ processed/` to make a copy of the raw GWAS in `processed/`
 
-    # data 
-    mkdir /data/GWAS_data/${DATA}/
-    mkdir /data/GWAS_data/${DATA}/raw/
-    mkdir /data/GWAS_data/${DATA}/processed/
-    mkdir /data/GWAS_data/${DATA}/docs/
-    
-    # code
-    mkdir /data/GWAS_data/work/000_GWAS_data_formatting/${DATA}/
-    mkdir /data/GWAS_data/work/000_GWAS_data_formatting/${DATA}/001_download/
-    mkdir /data/GWAS_data/work/000_GWAS_data_formatting/${DATA}/002_standardise/
-    mkdir /data/GWAS_data/work/000_GWAS_data_formatting/${DATA}/003_instruments/
-    ```
+### standardisation using python (most up-to date)
+4. modify [`standardise.py`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise.py) for your specific needs
+  - `satndardise.py` relies upon `pandas`, `numpy`, `sqlite`, `gzip`, and `liftover` which you can install with [`conda-env.py`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/conda-env.sh)
+  - `standardise.py` depends upon the functions [`save_file_with_retries.py`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise/save_file_with_retries.py) and [`liftover_function.py`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise/liftover_function.py)
+  - in `standardise.py` change:
+    - `VAR1` to your downloaded GWAS name
+    - `file_path` to the file path for where teh GWAS is 
+    - liftover step arguments for your current GWAS build (i.e., hg19 or hg38), the GWAS build you want (i.e., hg19 or hg38), and the name of the chromosome and position columns - position columns will be created with names `POS19` and `POS38`
+  - select columns step to the columns you want to keep (examples given)
+  - rename columns step to standardized names - your column names are on the left, standard column names on the right
+  - CHR col step can be omitted if your chromosome column doesnt have the `chr` string
 
-2. download data from source to `raw/` - ideally download using a script (e.g., `wget`)
-    * for GWAS catalog data you can use [`download_GWAS-catalog.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/scripts/download_GWAS-catalog.sh)
-    * save the script in `001_download/`
+### standardisation using bash
+4. modify [`standardise.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise.sh) for your specific needs
+  - `standardise.sh` relies upon a function script of the same name [`standardise.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise/standardise.sh) which calls the helper functions in `standardise/`: [check_SNP-column.sh](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise/check_SNP-column.sh), [check_archive.sh](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise/check_archive.sh), [check_delimiter.sh](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise/check_delimiter.sh), [check_phenotype.sh](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise/check_phenotype.sh)
+    - each of these functions can bd used independentaly
+  - `standardise.sh` depends upon a [`column_mapping_file`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/standardise/column_mapping_file) where your columns are on the left and the standardised columns are on the right (example file shown) and 
 
-3. create a `column_mapping_file` using this [template](https://github.com/mattlee821/000_GWAS_formatting/blob/main/scripts/standardise/column_mapping_file)
-    * save the `column_mapping_file` in `00*_standardise/`
-    * `column_mapping_file` has two columns:
-      * column 1 = your column names - you change this column to the names of your columns
-      * column 2 = standardised column names - dont change this column, this is what your formatted data will have as column names
-    * you dont need to have all of the columns present
-
-4. run `standardise.sh`
-    * `standardise.sh` has 4 options:
-      * `-i` = this is the name of your GWAS data
-      * `-o` = this is where you want to save the formatted data (i.e., `processed/`)
-      * `-columns` = the location of the `column_mapping_file` from step 3
-      * `-phenotype` = (optional) a string for the phenotype column; if blank, file name is used
-    ```
-    ${SCRIPT}standardise.sh -i ${DATA_IN} \
-    -o ${DATA_OUT} \
-    -columns ${DATA_IN}column_mapping_file
-    -phenotype trait
-    ```
-
-5. if you need to do additional or intermediate steps look at [`scripts/`](https://github.com/mattlee821/000_GWAS_formatting/tree/main/scripts):
-    * `convert_gwasvcf_to_ebi.sh` - converts the gwasvcf file format (used by OpenGWAS) to plain text (or what they call EBI format)
-    * `phenotype_col.sh` - takes the file name and adds a column (at the end) of the GWAS file with the filename in each row - useful when using multiple GWAS
-    * `make_file_list.sh` - makes a list of filenames and splits them into specified chunks across multiple files called `filelist*` - useful when using lots of GWAS
-    * `convert_chr-pos_to_rsid.sh` - adds an rsid column to GWAS based on a reference
-    * `convert_rsid_to_chr-pos.sh` - adds a chr and pos column to GWAS based on a reference
-    * `header.sh` - replaces current header with specified header using delimiter
-    * `identify_delimiter.sh` - identifies the most common delimiter used in the first row (usually the header)
-    * `download_GWAS-catalog.sh` - `wget` script to help download GWAS + README from EBI GWAS catalog
+### helpers
+- convert SNPID to rsID using a reference (just a simple left-join): [`convert_SNPID-rsID.R`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/convert_SNPID-rsID.R)
+- map allele info using a reference (just a simple left-join): [`map-allele-info.R`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/map-allele-info.R)
+- convert delimiters to `\t` using `perl`: [`convert_delimiter.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/convert_delimiter.sh)
+- convert GWAS VCF to EBI (i.e., GWAS catalog) file type using `samtools`: [`convert_gwasvcf-ebi.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/convert_gwasvcf-ebi.sh)
+- move data from `processed/` to `work/` and change permissions: [`move-processed.sh`](https://github.com/mattlee821/000_GWAS_formatting/blob/main/000_scripts/move-processed.sh)
 
 ## data
+- `ferkingstad_2021_PMID34857953/` = [Ferkingstad et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34857953/) - deCODE proteins (Somalogic)
+- `sun_2023_PMID37794186` = [Sun et al., 2023](https://pubmed.ncbi.nlm.nih.gov/37794186/) - UK biobank proteins (Olink)
+- `pietzner_2021_PMID34648354` = 
+- `zhang_2020_PMID32424353` = 
+
 * `agrawal_2022_PMID35773277/` = [Agrawal et al., (2022)](https://www.nature.com/articles/s41467-022-30931-2) - abdominal/subcutaneous/visceral adiposity measures
 * `CRC_early-onset/` = unpublished - colorectal cancer (early onset)
 * `fernandez-rozadilla_2022_PMID36539618` = [Fernandez-rozadilla et al., (2022)](https://pubmed.ncbi.nlm.nih.gov/36539618/) - colorectal cancer
-* `ferkingstad_2021_PMID34857953/` = [Ferkingstad et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34857953/) - proteins (somascan)
 * `GTEx/` = [Genotype Tissue Expression project](https://gtexportal.org/home/) - tissue expression
 * `huyghe_2018_PMID30510241/` = [Huyghe et al., (2018)](https://pubmed.ncbi.nlm.nih.gov/30510241/) - colorectal cancer + subtypes
 * `liu_2021_PMID34128465/` = [Liu et al., (2021)](https://pubmed.ncbi.nlm.nih.gov/34128465/) - visceral/subcutaneous/liver/pancreas volume/fat/measurement 

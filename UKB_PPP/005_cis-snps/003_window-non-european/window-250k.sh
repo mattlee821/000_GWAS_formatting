@@ -14,7 +14,7 @@ while IFS=$'\t' read -r FILE_PATH CHR POS FILE_OUT; do
     echo "Searching for CHR: $CHR"
     echo "Searching for POS: $POS"
 
-    zcat $FILE_PATH | awk '$1 == '$CHR' && ($20 >= ('$POS' - 250000) && $20 < ('$POS' + 250000)) { print $0 }' > ${FILE_OUT}
+    zcat $FILE_PATH | awk '$1 == "'$CHR'" && ($20 >= ('$POS' - 250000) && $20 < ('$POS' + 250000)) { print $0 }' > ${FILE_OUT}
     echo "Line count for $FILE_OUT: $(wc -l < $FILE_OUT)"
 done < "$FILE_IN"
 

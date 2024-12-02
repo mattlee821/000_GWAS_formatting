@@ -40,15 +40,17 @@ data <- select(data,
                P,
                phenotype)
 data$N <- 34557
-## save 
 data <- filter(data, SNP != "-")
+data <- data %>%
+  mutate(CHR = ifelse(CHR == "X", "23", CHR))
+## save 
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/002_cissnps-discovery-EU.txt",
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 data <- left_join(data_files, data, by = c("ID" = "phenotype"))
 data <- data[complete.cases(data), ]
 data$file <- paste0("/data/GWAS_data/work/UKB_PPP/cis-snps/european/", sub(".*/", "", data$V1), ".", data$SNP)
 data <- select(data, V1, CHR, POS, file)
-data$CHR <- as.numeric(sub("X", 23, data$CHR)) # convert "X" CHR to 23
+data$CHR <- as.numeric(data$CHR)
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/003_cissnps-discovery-EU_filelist.txt",
             row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
 
@@ -80,8 +82,10 @@ data <- select(data,
                P,
                phenotype)
 data$N <- 34557+17806
-## save 
 data <- filter(data, SNP != "-")
+data <- data %>%
+  mutate(CHR = ifelse(CHR == "X", "23", CHR))
+## save 
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/002_cissnps-combined-allancestries.txt",
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 data <- left_join(data_files, data, by = c("ID" = "phenotype"))
@@ -89,7 +93,7 @@ data <- data[complete.cases(data), ]
 data$file <- paste0("/data/GWAS_data/work/UKB_PPP/cis-snps/combined/", sub(".*/", "", data$V1), ".", data$SNP)
 data$V1 <- gsub(pattern = "european", replacement = "combined", x = data$V1)
 data <- select(data, V1, CHR, POS, file)
-data$CHR <- as.numeric(sub("X", 23, data$CHR)) # convert "X" CHR to 23
+data$CHR <- as.numeric(data$CHR)
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/003_cissnps-combined-allancestries_filelist.txt",
             row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
 
@@ -123,8 +127,10 @@ data <- select(data,
                phenotype,
                ancestry)
 data$N <- 17806
-## save 
 data <- filter(data, SNP != "-")
+data <- data %>%
+  mutate(CHR = ifelse(CHR == "X", "23", CHR))
+## save 
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/002_cissnps-replicationn-nonEU.txt",
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 data <- left_join(data_files, data, by = c("ID" = "phenotype"))
@@ -132,6 +138,53 @@ data <- data[complete.cases(data), ]
 data$file <- paste0("/data/GWAS_data/work/UKB_PPP/cis-snps/non-european/", sub(".*/", "", data$V1), ".", data$SNP)
 data$V1 <- gsub(pattern = "european", replacement = "non-european", x = data$V1)
 data <- select(data, V1, CHR, POS, file)
-data$CHR <- as.numeric(sub("X", 23, data$CHR)) # convert "X" CHR to 23
+data$CHR <- as.numeric(data$CHR) # convert "X" CHR to 23
 write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/003_cissnps-replicationn-nonEU_filelist.txt",
+            row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
+
+# data: pQTLS EAS ====
+data <- readxl::read_xlsx("/data/GWAS_data/files/UKB_PPP/cis/raw/41586_2023_6592_MOESM3_ESM.xlsx", sheet = 12, skip = 5) # ST11
+data <- subset(data, `cis/trans` == "cis")
+data <- subset(data, MHC == 0)
+data$phenotype <- gsub(":v1", "", data$`UKBPPP ProteinID`)
+data$phenotype <- gsub(":", "_", data$phenotype)
+data$`Variant ID (CHROM:GENPOS (hg37):A0:A1:imp:v1)` <- gsub(":imp:v1", "", data$`Variant ID (CHROM:GENPOS (hg37):A0:A1:imp:v1)`)
+data <- data %>%
+  separate(`Variant ID (CHROM:GENPOS (hg37):A0:A1:imp:v1)`, into = c("CHR", "POS", "OA", "EA"), sep = ":", remove = FALSE)
+data <- data %>%
+  rename(
+    SNP = rsID,
+    EAF = A1FREQ,
+    BETA = BETA,
+    SE = SE,
+    P = `log10(p)`,
+    ancestry = Ancestry)
+data <- select(data,
+               CHR,
+               POS,
+               SNP,
+               EA,
+               OA,
+               EAF,
+               BETA,
+               SE,
+               P,
+               phenotype,
+               ancestry)
+# data$N <- 17806
+data <- data %>%
+  filter(SNP != "-") %>%
+  filter(ancestry == "EAS")
+data <- data %>%
+  mutate(CHR = ifelse(CHR == "X", "23", CHR))
+## save 
+write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/002_cissnps-EAS.txt",
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+data <- left_join(data_files, data, by = c("ID" = "phenotype"))
+data <- data[complete.cases(data), ]
+data$file <- paste0("/data/GWAS_data/work/UKB_PPP/cis-snps/east_asian/", sub(".*/", "", data$V1), ".", data$SNP)
+data$V1 <- gsub(pattern = "european", replacement = "east_asian", x = data$V1)
+data <- select(data, V1, CHR, POS, file)
+data$CHR <- as.numeric(data$CHR) # convert "X" CHR to 23
+write.table(data, "/data/GWAS_data/work/UKB_PPP/cis-snps/003_cissnps-EAS_filelist.txt",
             row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
