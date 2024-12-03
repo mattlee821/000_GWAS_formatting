@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=20-1:0:00
-#SBATCH --mem=100000M
+#SBATCH --mem=10000M
 #SBATCH --partition=low_p
 
 FILES=/data/GWAS_data/files/
@@ -13,7 +13,7 @@ PROCESSED=/processed/
 RAW=/raw/
 DOCS=/docs/
 GWAS=/GWAS/
-DIRECTORY=pietzner_2021_PMID34648354
+DIRECTORY=sun_2023_PMID37794186
 
 find "${FILES}${DIRECTORY}/" -type d -exec chmod 777 {} \;
 find "${FILES}${DIRECTORY}/" -type f -exec chmod 777 {} \;

@@ -15,20 +15,19 @@ DOCS=/docs/
 GWAS=/GWAS/
 DIRECTORY=zhang_2022_PMID35501419/
 
-find "${FILES}${DIRECTORY}" -type d -exec chmod 777 {} \;
-find "${FILES}${DIRECTORY}" -type f -exec chmod 777 {} \;
+find "${FILES}${DIRECTORY}/" -type d -exec chmod 777 {} \;
+find "${FILES}${DIRECTORY}/" -type f -exec chmod 777 {} \;
 
-# Create destination directories
-mkdir -p "${WORK}${DIRECTORY}"
-mkdir -p "${WORK}${DIRECTORY}${GWAS}"
-
-# Run rsync and rename files for each directory in parallel
+# move processed/
+mkdir -p ${WORK}${DIRECTORY}/
+mkdir -p ${WORK}${DIRECTORY}/${GWAS}
+## Run rsync and rename files for each directory in parallel
 SUBDIRS=("african-american" "european")
 for subdir in "${SUBDIRS[@]}"; do
   (
     # Source and destination paths
-    SOURCE="${FILES}${DIRECTORY}${PROCESSED}${subdir}/"
-    DESTINATION="${WORK}${DIRECTORY}${GWAS}${subdir}/"
+    SOURCE="${FILES}${DIRECTORY}/${PROCESSED}${subdir}/"
+    DESTINATION="${WORK}${DIRECTORY}/${GWAS}${subdir}/"
 
     # Ensure the destination directory exists
     mkdir -p "$DESTINATION"
@@ -44,19 +43,18 @@ for subdir in "${SUBDIRS[@]}"; do
 done
 wait
 echo "File transfer and renaming completed."
-
-# make permissions for work/GWAS
-find "${WORK}${DIRECTORY}${GWAS}" -type d -exec chmod 555 {} \;
-find "${WORK}${DIRECTORY}${GWAS}" -type f -exec chmod 555 {} \;
+find "${WORK}${DIRECTORY}/${GWAS}" -type d -exec chmod 555 {} \;
+find "${WORK}${DIRECTORY}/${GWAS}" -type f -exec chmod 555 {} \;
+chmod 555 "${WORK}${DIRECTORY}"
 
 # make permissions for files/ user read only
-find "${FILES}${DIRECTORY}" -type d -exec chmod 500 {} \;
-find "${FILES}${DIRECTORY}" -type f -exec chmod 400 {} \;
+chmod 555 "${FILES}${DIRECTORY}"
+find "${FILES}${DIRECTORY}/" -type d -exec chmod 555 {} \;
+find "${FILES}${DIRECTORY}/" -type f -exec chmod 555 {} \;
 
 # move docs/
-mkdir -p ${WORK}${DIRECTORY}
-mkdir -p ${WORK}${DIRECTORY}${DOCS}
-rsync -av "${FILES}${DIRECTORY}${DOCS}/" "${WORK}${DIRECTORY}${DOCS}"
-find "${WORK}${DIRECTORY}${DOCS}" -type d -exec chmod 555 {} \;
-find "${WORK}${DIRECTORY}${DOCS}" -type f -exec chmod 555 {} \;
-
+mkdir -p ${WORK}${DIRECTORY}/
+mkdir -p ${WORK}${DIRECTORY}/${DOCS}
+rsync -av "${FILES}${DIRECTORY}/${DOCS}/" "${WORK}${DIRECTORY}/${DOCS}"
+find "${WORK}${DIRECTORY}/${DOCS}" -type d -exec chmod 555 {} \;
+find "${WORK}${DIRECTORY}/${DOCS}" -type f -exec chmod 555 {} \;
